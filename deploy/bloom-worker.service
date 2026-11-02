@@ -1,0 +1,24 @@
+[Unit]
+Description=Bloom reminder and push worker
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/home/opc/project/bloom
+EnvironmentFile=/etc/bloom/bloom.env
+Environment=NODE_ENV=production
+ExecStart=/usr/local/bin/node /home/opc/project/bloom/worker/reminders.mjs
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

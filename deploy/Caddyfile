@@ -1,0 +1,16 @@
+# Bloom — add this block alongside the existing wassl.shop block.
+# Caddy obtains and renews TLS automatically for nip.io.
+baby.141.145.192.23.nip.io {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3001
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(self), microphone=(), geolocation=(self)"
+	}
+
+	request_body {
+		max_size 20MB
+	}
+}

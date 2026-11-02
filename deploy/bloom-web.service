@@ -1,0 +1,27 @@
+[Unit]
+Description=Bloom baby tracker (Next.js)
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/home/opc/project/bloom
+EnvironmentFile=/etc/bloom/bloom.env
+Environment=NODE_ENV=production
+ExecStart=/usr/local/bin/npm run start
+Restart=always
+RestartSec=3
+TimeoutStopSec=20
+KillSignal=SIGTERM
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/opc/project/bloom/uploads /home/opc/project/bloom/outbox /home/opc/project/bloom/.next/cache
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

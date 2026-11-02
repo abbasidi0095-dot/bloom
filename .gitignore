@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.env*.local
+data/
+*.tsbuildinfo
+next-env.d.ts
+uploads/
+outbox/
+.playwright/
+test-results/
+playwright-report/
+shot.mjs
+diag*.mjs
