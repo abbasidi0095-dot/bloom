@@ -145,9 +145,9 @@ export function SettingsView() {
           type: reminderType,
           label: reminderLabel || t(`reminders.types.${reminderType}`),
           scheduleKind,
-          intervalMinutes: scheduleKind === "interval" ? intervalMinutes : null,
-          times: scheduleKind === "daily" ? [time] : null,
-          days: scheduleKind === "daily" ? selectedDays : null,
+          intervalMinutes: scheduleKind === "interval" ? intervalMinutes : undefined,
+          times: scheduleKind === "daily" ? [time] : undefined,
+          days: scheduleKind === "daily" ? selectedDays : undefined,
         },
       });
       toast(t("settings.reminderSaved"));

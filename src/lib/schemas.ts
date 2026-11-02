@@ -80,8 +80,8 @@ export const reminderSchema = z.object({
   label: z.string().trim().min(1).max(120),
   scheduleKind: z.enum(["interval", "daily"]),
   intervalMinutes: z.coerce.number().int().min(5).max(10080).nullish(),
-  times: z.array(z.string().regex(/^\d{2}:\d{2}$/)).max(4).optional(),
-  days: z.array(z.coerce.number().int().min(0).max(6)).max(7).optional(),
+  times: z.array(z.string().regex(/^\d{2}:\d{2}$/)).max(4).nullish(),
+  days: z.array(z.coerce.number().int().min(0).max(6)).max(7).nullish(),
   enabled: z.boolean().optional(),
   babyId: z.string().uuid().nullish(),
 });
