@@ -197,7 +197,7 @@ h4 {
 .page {
   width: min(1180px, 100% - 2rem);
   margin-inline: auto;
-  padding-block: 1.5rem 7rem;
+  padding-block: 1.5rem calc(7rem + env(safe-area-inset-bottom));
   max-width: 100%;
   overflow-wrap: anywhere;
 }
@@ -474,8 +474,15 @@ html[dir="rtl"] .select {
 .app-shell {
   min-height: 100dvh;
   display: flex;
+  width: 100%;
   max-width: 100%;
   overflow-x: clip;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
 }
 
 .mobile-header {
@@ -514,11 +521,10 @@ html[dir="rtl"] .select {
   position: fixed;
   inset-inline: 0;
   bottom: 0;
-  padding-inline: max(0.6rem, env(safe-area-inset-left)) max(0.6rem, env(safe-area-inset-right));
   z-index: 40;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  padding: 0.4rem max(0.6rem, env(safe-area-inset-inline-start)) calc(0.45rem + env(safe-area-inset-bottom));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: 0.4rem max(0.6rem, env(safe-area-inset-right)) calc(0.45rem + env(safe-area-inset-bottom)) max(0.6rem, env(safe-area-inset-left));
   background: color-mix(in srgb, var(--bg-elev) 92%, transparent);
   border-top: 1px solid var(--line);
   backdrop-filter: blur(20px);
@@ -541,7 +547,9 @@ html[dir="rtl"] .select {
   color: var(--muted);
   font-size: 0.64rem;
   font-weight: 700;
+  min-width: 0;
   min-height: 54px;
+  padding-inline: 0.15rem;
   border-radius: 16px;
   transition: color 160ms ease, background 160ms ease;
 }
