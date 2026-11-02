@@ -69,7 +69,7 @@ export async function POST(request: Request) {
       if (body.scheduleKind === "interval") {
         nextDue = new Date(Date.now() + (body.intervalMinutes ?? 180) * 60_000);
       } else {
-        nextDue = nextDailyDue(body.times?.length ? body.times : ["09:00"], body.days, tz);
+        nextDue = nextDailyDue(body.times?.length ? body.times : ["09:00"], body.days ?? undefined, tz);
       }
       const inserted = await db.query(
         `insert into reminders (
